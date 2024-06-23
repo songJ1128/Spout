@@ -3,4 +3,9 @@ const router = express.Router();
 const querystring = require('querystring');
 const axios = require('axios');
 
+router.get("/next", function(req, res) {
+    //have the landing page login button prompt the user to login to their spout acc
+    //TODO
+});
+
 module.exports = router;
