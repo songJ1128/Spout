@@ -1,0 +1,38 @@
+import { useEffect, useState } from "react";
+import Logo from "../components/logo";
+import Navbar from "../components/navbar";
+
+function Voting() {
+    const [playlistOptions, setPlaylistOptions] = useState([{name: "wke"}, {name:"wqqq"}]);
+    const [voted, setVoted] = useState(false);
+
+    const handleVote = () => {
+        setVoted(true);
+    }
+    useEffect(function() {
+        async function fetchMorePlaylists() {
+            if (voted) {
+
+            }
+            //TODO fetch more options
+            //SetPlaylistOptions and then set vote back to false
+        }
+        fetchMorePlaylists();
+    }, [voted])
+    return (
+        <div>
+            <Logo></Logo>
+            <Navbar></Navbar>
+            <div>Stuff div</div>
+            {!voted && playlistOptions.map((option) => (
+                <div>
+                    <button onClick={handleVote}>
+                        <h1>{option.name}</h1>
+                    </button>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default Voting;
