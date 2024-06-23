@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Datacard from "../components/datacard";
+import Logo from "../components/logo";
+import Navbar from "../components/navbar";
 
 function Analytics() {
     const today = new Date()
@@ -20,6 +22,8 @@ function Analytics() {
     //TODO replace the datacards with a dynamic maping to display data
     return (
         <div>
+            <Logo/>
+            <Navbar/>
             <div class="dropdown">
                 <select value={curDate} onChange={handleDataChange}>
                     <option value="">Select Day</option>
