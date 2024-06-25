@@ -1,35 +1,41 @@
 //import { format } from "mysql2";
 import { useState } from "react";
 import { useEffect } from "react";
+import axios from 'axios';
+//import debounce from 'lodash/debounce';
+
 function Searchbar({setPlaylist}) {
     const [searchQuery, setSearchQuery] = useState("");
-    const [songDisplay, setSongDisplay] = useState({});
+    const [songDisplay, setSongDisplay] = useState([{name: "kjqbd", id: "1"},{name:"mmmm", id:"2"},{name:"jlwenf", id:"3"}]);
     //TODO implement the add song to playlist function using setPlayist i.e setPlaylist(playlist => {...playlist, song})
-    const handleSearch = (event) => {
-        setSearchQuery(event.target.value);
-    }
-    useEffect(function() {
-        console.log("Search is" + searchQuery);
-        async function getSongs() {
+    const handleSearch = async(val) => {
+        setSearchQuery(val);
+
+        if (val) {
             try {
-                const response = await fetch();
-                //TODO implemnt fetch req songs
-                if (response.ok) {
-                    //TODO display songs and other info
-                }   
+              const response = await axios.get(`http://localhost:8080/songQuery`, {
+                params: {q: val},
+              });
+              setSongDisplay(response.data);
             } catch (error) {
-                console.log(error);
+              console.error('Error fetching data from server', error);
             }
-        }
-    }, [searchQuery]);
+          } 
+        };
+    
     return (
         <div className="search-bar">
         <input
           type="text"
           placeholder="Search..."
           value={searchQuery}
-          onChange={handleSearch}
+          onChange={(event) => handleSearch(event.target.value)}
         />
+        <ul>
+        {songDisplay.map((track) => (
+          <li key={track.id}>{track.name}</li>
+        ))}
+      </ul>
       </div>
     );
 }
