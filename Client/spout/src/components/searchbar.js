@@ -82,18 +82,20 @@ function Searchbar({addToPlaylist}) {
             />
             <span class="caret"></span>
           </form>
-        <ul>
-        {songDisplay.map((track) => (
-          <div key={track.id} onMouseEnter={(event) => handleMouseEnter(track.preview_url, event)}
-          onMouseLeave={() => handleMouseLeave(track.preview_url)} onMouseMove={handleMouseMove}
-          value ={track}
-          onClick={() => handleAddtoPlaylist(track)}>
-            <img src={track.image} alt="no track pic" width="40" height="40"/>
-            {track.name}
-            
-            </div>
-        ))}
-        </ul>
+          <div class="list">
+            <ul>
+            {songDisplay.map((track) => (
+              <li key={track.id} onMouseEnter={(event) => handleMouseEnter(track.preview_url, event)}
+                onMouseLeave={() => handleMouseLeave(track.preview_url)}
+                onMouseMove={handleMouseMove}
+                value ={track}
+                onClick={() => handleAddtoPlaylist(track)}>
+                <img src={track.image} alt="no track pic" width="40" height="40"/>
+                {track.name}
+              </li>
+            ))}
+            </ul>
+          </div>
       <audio ref={audioRef} />
       <div ref={tooltipRef} className="tooltip">No preview</div>
       </div>
