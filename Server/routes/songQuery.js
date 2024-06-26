@@ -23,8 +23,14 @@ router.get('/', async (req, res) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    const tracks = response.data.tracks.items.map((track) => ({
+      id: track.id,
+      name: track.name,
+      preview_url: track.preview_url,
+      image: track.album.images[0] ? track.album.images[0].url : null,
+    }));
     //console.log(response.data.tracks.items);
-    res.json(response.data.tracks.items);
+    res.json(tracks);
   } catch (error) {
     res.status(500).send({ error: 'Failed to fetch data from Spotify API' });
   }

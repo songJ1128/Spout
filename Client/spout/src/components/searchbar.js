@@ -1,5 +1,5 @@
 //import { format } from "mysql2";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
 import axios from 'axios';
 //import debounce from 'lodash/debounce';
@@ -17,11 +17,50 @@ function Searchbar({setPlaylist}) {
                 params: {q: val},
               });
               setSongDisplay(response.data);
-              //console.log(response.data);
+              console.log(response.data);
             } catch (error) {
               console.error('Error fetching data from server', error);
             }
           } 
+        };
+
+        const audioRef = useRef(null);
+        const tooltipRef = useRef(null);
+
+        const handleMouseEnter = async (previewUrl, e) => {
+          if (!previewUrl && tooltipRef.current) {
+            const tooltip = tooltipRef.current;
+            tooltip.style.display = 'block';
+            tooltip.style.left = `${e.pageX + 10}px`;
+            tooltip.style.top = `${e.pageY + 10}px`;
+          }
+          else if (previewUrl && audioRef.current) {
+            try {
+              await audioRef.current.pause(); // Pause the current audio 
+              audioRef.current.src = previewUrl;
+              await audioRef.current.play(); // Play the new audio
+            } catch (error) {
+              console.error(error);
+            }
+          }
+        };
+      
+        const handleMouseLeave = (previewUrl) => {
+          if (previewUrl && audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current.src = "";
+          }
+          if (tooltipRef.current) {
+            tooltipRef.current.style.display = 'none';
+          }
+        };
+      
+        const handleMouseMove = (e) => {
+          if (tooltipRef.current) {
+            const tooltip = tooltipRef.current;
+            tooltip.style.left = `${e.pageX + 10}px`;
+            tooltip.style.top = `${e.pageY + 10}px`;
+          }
         };
     
     return (
@@ -31,12 +70,20 @@ function Searchbar({setPlaylist}) {
           placeholder="Search..."
           value={searchQuery}
           onChange={(event) => handleSearch(event.target.value)}
+
         />
         <ul>
         {songDisplay.map((track) => (
-          <li key={track.id}>{track.name}</li>
+          <div key={track.id} onMouseEnter={(event) => handleMouseEnter(track.preview_url, event)}
+          onMouseLeave={() => handleMouseLeave(track.preview_url)} onMouseMove={handleMouseMove}>
+            <img src={track.image} alt="no track pic"/>
+            {track.name}
+            
+            </div>
         ))}
       </ul>
+      <audio ref={audioRef} />
+      <div ref={tooltipRef} className="tooltip">No preview</div>
       </div>
     );
 }
