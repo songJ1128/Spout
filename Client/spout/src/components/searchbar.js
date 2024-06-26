@@ -4,9 +4,10 @@ import { useEffect } from "react";
 import axios from 'axios';
 //import debounce from 'lodash/debounce';
 
-function Searchbar({setPlaylist}) {
+function Searchbar({addToPlaylist}) {
     const [searchQuery, setSearchQuery] = useState("");
     const [songDisplay, setSongDisplay] = useState([{name: "kjqbd", id: "1"},{name:"mmmm", id:"2"},{name:"jlwenf", id:"3"}]);
+    
     //TODO implement the add song to playlist function using setPlayist i.e setPlaylist(playlist => {...playlist, song})
     const handleSearch = async(val) => {
         setSearchQuery(val);
@@ -62,7 +63,10 @@ function Searchbar({setPlaylist}) {
             tooltip.style.top = `${e.pageY + 10}px`;
           }
         };
-    
+        
+        const handleAddtoPlaylist = (track) => {
+          addToPlaylist(track);
+        };
     return (
         <div className="search-bar">
         <input
@@ -75,7 +79,9 @@ function Searchbar({setPlaylist}) {
         <ul>
         {songDisplay.map((track) => (
           <div key={track.id} onMouseEnter={(event) => handleMouseEnter(track.preview_url, event)}
-          onMouseLeave={() => handleMouseLeave(track.preview_url)} onMouseMove={handleMouseMove}>
+          onMouseLeave={() => handleMouseLeave(track.preview_url)} onMouseMove={handleMouseMove}
+          value ={track}
+          onClick={() => handleAddtoPlaylist(track)}>
             <img src={track.image} alt="no track pic"/>
             {track.name}
             

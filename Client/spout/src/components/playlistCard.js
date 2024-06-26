@@ -3,11 +3,14 @@ import Searchbar from "./searchbar";
 import PlaylistDisplay from "./playlistDisplay";
 
 function PlaylistCard() {
-    const [playlist, setPlaylist] = useState([{name: "aba"},{name: "debn"}]);
-
+    const [playlist, setPlaylist] = useState([]);
+    const addToPlayList = (song) => {
+        setPlaylist([...playlist, song]);
+        console.log(playlist);
+    }
     return (
         <>
-            <Searchbar setPlaylist={setPlaylist}></Searchbar>
+            <Searchbar addToPlaylist={addToPlayList}></Searchbar>
             <PlaylistDisplay playlist={playlist}></PlaylistDisplay>
         </>
     );
