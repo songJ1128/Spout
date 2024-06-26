@@ -5,9 +5,12 @@ function PlaylistDisplay ({playlist}) {
     
     return (
         <div>
-            {playlist.map((song, index) => (
-                <div key ={index}>
-                    <p>{song.name}</p>
+            {playlist.map((song) => (
+                <div key ={song.id}>
+                    <div>
+                        <img src={song.image} alt="no imag"/>
+                        {song.name}
+                        </div>
                 </div>
             ))}
         </div>
