@@ -65,10 +65,11 @@ function Searchbar({addToPlaylist}) {
         };
         
         const handleAddtoPlaylist = (track) => {
+          
           addToPlaylist(track);
         };
     return (
-        <div className="search-bar">
+        <div>
         <input
           type="text"
           placeholder="Search..."
