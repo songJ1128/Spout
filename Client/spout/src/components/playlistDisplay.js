@@ -8,7 +8,7 @@ function PlaylistDisplay ({playlist}) {
             {playlist.map((song) => (
                 <div key ={song.id}>
                     <div>
-                        <img src={song.image} alt="no imag"/>
+                        <img src={song.image} alt="no imag" width="40" height="40"/>
                         {song.name}
                         </div>
                 </div>

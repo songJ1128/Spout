@@ -88,7 +88,7 @@ function Searchbar({addToPlaylist}) {
           onMouseLeave={() => handleMouseLeave(track.preview_url)} onMouseMove={handleMouseMove}
           value ={track}
           onClick={() => handleAddtoPlaylist(track)}>
-            <img src={track.image} alt="no track pic"/>
+            <img src={track.image} alt="no track pic" width="40" height="40"/>
             {track.name}
             
             </div>
