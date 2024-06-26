@@ -17,12 +17,13 @@ router.get('/', async (req, res) => {
       params: {
         q: query,
         type: 'track',
-        limit: '5',
+        limit: 8,
       },
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+    //console.log(response.data.tracks.items);
     res.json(response.data.tracks.items);
   } catch (error) {
     res.status(500).send({ error: 'Failed to fetch data from Spotify API' });

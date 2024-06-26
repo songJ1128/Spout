@@ -17,6 +17,7 @@ function Searchbar({setPlaylist}) {
                 params: {q: val},
               });
               setSongDisplay(response.data);
+              //console.log(response.data);
             } catch (error) {
               console.error('Error fetching data from server', error);
             }
