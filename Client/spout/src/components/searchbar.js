@@ -2,6 +2,7 @@
 import { useRef, useState } from "react";
 import { useEffect } from "react";
 import axios from 'axios';
+import style from "../css/searchbar.css"
 //import debounce from 'lodash/debounce';
 
 function Searchbar({setPlaylist}) {
@@ -65,13 +66,16 @@ function Searchbar({setPlaylist}) {
     
     return (
         <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchQuery}
-          onChange={(event) => handleSearch(event.target.value)}
-
-        />
+          <form>
+            <label for="search">Search</label>
+            <input
+              type="search"
+              pattern=".*\S.*"
+              required
+              onChange={(event) => handleSearch(event.target.value)}
+            />
+            <span class="caret"></span>
+          </form>
         <ul>
         {songDisplay.map((track) => (
           <div key={track.id} onMouseEnter={(event) => handleMouseEnter(track.preview_url, event)}
@@ -81,7 +85,7 @@ function Searchbar({setPlaylist}) {
             
             </div>
         ))}
-      </ul>
+        </ul>
       <audio ref={audioRef} />
       <div ref={tooltipRef} className="tooltip">No preview</div>
       </div>
