@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Logo from "../components/logo";
 import Navbar from "../components/navbar";
-
+import VotingComponent from "../components/votingComponent";
 function Voting() {
     const [playlistOptions, setPlaylistOptions] = useState([{name: "wke"}, {name:"wqqq"}]);
     const [voted, setVoted] = useState(false);
@@ -23,15 +23,9 @@ function Voting() {
         <div>
             <Logo></Logo>
             <Navbar></Navbar>
-            <div>Stuff div</div>
-            {!voted && playlistOptions.map((option) => (
-                <div>
-                    <button onClick={handleVote}>
-                        <h1>{option.name}</h1>
-                    </button>
-                </div>
-            ))}
+            <VotingComponent></VotingComponent>
         </div>
+            
     );
 };
 
