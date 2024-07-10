@@ -1,8 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 function PlaylistDisplay ({playlist}) {
     const [playlistName, setPlaylistName] = useState("Epic Music");
-
+    const navigate = useNavigate();
     const handleNameChange = (e) => {
         setPlaylistName(e.target.value);
     };
@@ -11,6 +12,7 @@ function PlaylistDisplay ({playlist}) {
             console.log(playlist);
             const response = await axios.post('http://localhost:8080/songQuery/addPlaylist', {playlistName: playlistName, playlist: playlist,});
             console.log("Success");
+            navigate('/voting');
         } catch(error) {
             console.log("Error" , error);
         }
