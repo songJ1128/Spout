@@ -5,12 +5,12 @@ const axios = require('axios');
 const {getPlaylists} = require('../playlistModel');
 
 router.get("/getPlaylists", function(req, res) {
-    console.log("writ 1")
+    
     getPlaylists((err, result) => {
         if (err) {
-          return res.status(500).json({ error: 'Failed to add playlist' });
+          return res.status(500).json({ error: 'Failed to get playlists' });
         }
-        console.log(result);
+        
         res.json(result);
       })
 });
