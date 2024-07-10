@@ -10,7 +10,7 @@ const { METHODS } = require("http");
 const authRoutes = require("./routes/auth");
 const thisauthRoutes = require("./routes/thisauth");
 const songQuery = require("./routes/songQuery");
-
+const vote = require('./routes/vote');
 const corsOptions = {
   origin: "*",
   credentials: true,
@@ -23,6 +23,7 @@ app.use(cors(corsOptions));
 app.use("/auth", authRoutes);
 app.use("/thisauth", thisauthRoutes);
 app.use("/songQuery", songQuery);
+app.use("/vote", vote);
 
 app.listen(port, () => {
   console.log(port);

@@ -1,7 +1,7 @@
 const db = require('./db');
 
 const getPlaylists = (callback) => {
-    const query = 'SELECT * FROM playlists LIMIT 2';
+    const query = 'SELECT * FROM playlists ORDER BY RAND() LIMIT 2';
     db.query(query, (err, results) => {
       if (err) return callback(err);
       callback(null, results);
