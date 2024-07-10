@@ -13,7 +13,7 @@ function VotingComponent() {
 
     const fetchPlaylists = async () => {
         try {
-          const response = await axios.get('http://localhost:8080/getPlaylists');
+          const response = await axios.get('http://localhost:8080/vote/getPlaylists');
           setPlaylists(response.data);
         } catch (error) {
           console.error('Error fetching playlists', error);

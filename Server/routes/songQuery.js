@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 const querystring = require('querystring');
 const axios = require('axios');
+const bodyParser = require('body-parser');
 const {getAccessToken} = require('../tokenManager');
+const {addPlaylist} = require('../playlistModel');
+
+router.use(express.json());
 
 router.get('/', async (req, res) => {
     const query = req.query.q;
@@ -34,6 +38,17 @@ router.get('/', async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: 'Failed to fetch data from Spotify API' });
   }
+});
+
+router.post('/addPlaylist', (req, res) => {
+  const {playlistName, playlist} = req.body;
+  console.log("muma 1");
+  addPlaylist(playlistName , playlist, (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to add playlist' });
+    }
+    res.json({ message: 'Playlist added successfully' });
+  });
 });
 
 module.exports = router;
