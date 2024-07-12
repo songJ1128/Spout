@@ -59,7 +59,7 @@ router.get('/callback', async function(req, res) {
       setAccessToken(access_token);
       // Store the tokens securely
       token = access_token;
-      console.log("error before 3000");
+      
       res.redirect('http://localhost:3000/home');
     } catch (error) {
       console.error('Error fetching access token:');

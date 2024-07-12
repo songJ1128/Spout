@@ -97,7 +97,7 @@ function Searchbar({addToPlaylist}) {
             </ul>
           </div>
       <audio ref={audioRef} />
-      <div ref={tooltipRef} className="tooltip">No preview</div>
+      <div ref={tooltipRef} className="tooltip"></div>
       </div>
     );
 }

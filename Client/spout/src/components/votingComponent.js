@@ -1,15 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from 'axios';
 import { useSwipeable } from 'react-swipeable';
 import PlaylistDisplay from "./playlistDisplay";
 import Playlist from "./playlist";
+import '../css/votingComponent.css'; 
+
 function VotingComponent() {
     const [playlists, setPlaylists] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     
+    const audioRef = useRef(null);
+    const tooltipRef = useRef(null);
+
     useEffect(function() {
         fetchPlaylists();
     } ,[]);
+
 
     const fetchPlaylists = async () => {
         try {
@@ -47,10 +53,10 @@ function VotingComponent() {
       return (
         <div className="voting-container">
           <div {...handleLeft} className="playlist-card">
-            <Playlist playlist={playlists[currentIndex]} />
+            <Playlist playlist={playlists[currentIndex]} audioRef={audioRef} tooltipRef={tooltipRef} />
           </div>
           <div {...handleRight} className="playlist-card">
-            <Playlist playlist={playlists[currentIndex + 1]} />
+          <Playlist playlist={playlists[currentIndex+1]} audioRef={audioRef} tooltipRef={tooltipRef} />
           </div>
         </div>
       );

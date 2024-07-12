@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
 
 router.post('/addPlaylist', (req, res) => {
   const {playlistName, playlist} = req.body;
-  console.log("muma 1");
+  
   addPlaylist(playlistName , playlist, (err, result) => {
     if (err) {
       return res.status(500).json({ error: 'Failed to add playlist' });

@@ -1,0 +1,14 @@
+.voting-container {
+    display: flex;
+    justify-content: space-between; 
+    
+  }
+  
+  .playlist-card {
+    flex: 1; 
+    margin: 0 10px; 
+    border: 1px solid white;
+    padding: 10px; /* Add some padding inside the border */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 8px rgba(231, 222, 222, 0.674); /* Optional: Add a subtle shadow */
+  }
