@@ -28,8 +28,9 @@ function VotingComponent() {
 
       const handleVote = async (votedPlaylist) => {
         try {
-            await axios.post('http://localhost:8080/vote', {
-                playlistId: votedPlaylist,
+            console.log(typeof votedPlaylist.id, votedPlaylist.id, votedPlaylist);
+            await axios.post('http://localhost:8080/vote/like', {
+                playlistId: votedPlaylist.id,
             });
             setCurrentIndex((prevIndex) => prevIndex + 1);
         } catch (error) {
