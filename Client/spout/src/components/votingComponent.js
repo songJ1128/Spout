@@ -32,7 +32,7 @@ function VotingComponent() {
             await axios.post('http://localhost:8080/vote/like', {
                 playlistId: votedPlaylist.id,
             });
-            setCurrentIndex((prevIndex) => prevIndex + 1);
+            fetchPlaylists();
         } catch (error) {
             console.log("error submitting vote", error);
         }

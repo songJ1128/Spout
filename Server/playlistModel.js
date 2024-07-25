@@ -1,12 +1,27 @@
 const db = require('./db');
 
 const getPlaylists = (callback) => {
-    const query = 'SELECT * FROM playlists ORDER BY RAND() LIMIT 2';
-    db.query(query, (err, results) => {
-      if (err) return callback(err);
+  const query = 'SELECT * FROM playlists ORDER BY RAND() LIMIT 2';
+  db.query(query, (err, results) => {
+    if (err) return callback(err);
+    const playlistIds = results.map(playlist => playlist.id);
+    updateCounters(playlistIds, (updateErr) => {
+      if (updateErr) return callback(updateErr);
       callback(null, results);
     });
-  };
+  });
+};
+
+const updateCounters = (playlistIds, callback) => {
+  if (playlistIds.length === 0) {
+    return callback(null);
+  }
+  const updateQuery = 'UPDATE playlists SET counter = counter + 1 WHERE id IN (?)';
+  db.query(updateQuery, [playlistIds], (err) => {
+    if (err) return callback(err);
+    callback(null);
+  });
+};
 
 
   const addPlaylist = (playlistName, playlist, callback) => {
