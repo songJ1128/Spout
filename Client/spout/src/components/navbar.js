@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
             <Link to="/home"><button>link 1</button></Link>
             <Link to="/home"><button>link 2</button></Link>
             <Link to="/home"><button>link 3</button></Link>
-            <Link to="/analytics"><button>link 4</button></Link>
-            <Link to="/voting"><button>link 5</button></Link>
+            <Link to="/analytics"><button>stats</button></Link>
+            <Link to="/voting"><button>vote</button></Link>
         </nav>
     );
  }

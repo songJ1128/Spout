@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import Datacard from "../components/datacard";
 import Logo from "../components/logo";
 import Navbar from "../components/navbar";
+import '../css/calendar.css' ;
+import Calendar from 'react-calendar';
+
+
 
 function Analytics() {
     const today = new Date()
     const [curDate, setCurDate] = useState(today);
+    const [data, setData] = useState([]);
+    const [showCalendar, setShowCalendar] = useState(false);
     //TODO create state for all pieces of data we want to show
     useEffect(function() {
         async function fetchDayAnaytics() {
@@ -14,23 +20,35 @@ function Analytics() {
         fetchDayAnaytics()
     },[curDate]);
 
-    const handleDataChange = (event) => {
-        setCurDate(event.target.value);
-    }
+    const handleDateChange = (date) => {
+        setCurDate(date);
+        setShowCalendar(false);
+      };
 
-    const formattedDate = new Intl.DateTimeFormat('en-US').format(today);
+      const toggleCalendar = () => {
+        setShowCalendar(!showCalendar);
+      };
+
+    const formattedDate = new Intl.DateTimeFormat('en-US').format(curDate);
     //TODO replace the datacards with a dynamic maping to display data
     return (
         <div>
             <Logo/>
             <Navbar/>
-            <div class="dropdown">
-                <select value={curDate} onChange={handleDataChange}>
-                    <option value="">Select Day</option>
-                    <option value="option1">{formattedDate}</option>
-                    <option value="option2">Option 1</option>
-                    <option value="option3">Option 2</option>
-                </select>
+            <div>
+                
+            <div className="calendar-container">
+                <h4>{formattedDate}</h4>
+                <button onClick={toggleCalendar}>
+                    {showCalendar ? 'Hide Calendar' : 'Change Date'}
+                </button>
+                {showCalendar && (
+                    <Calendar
+                    onChange={handleDateChange}
+                    value={curDate}
+                    />
+                )}
+            </div>
             </div>
             <div>
                 
