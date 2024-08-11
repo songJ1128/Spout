@@ -15,7 +15,11 @@ function Analytics() {
     //TODO create state for all pieces of data we want to show
     useEffect(function() {
         async function fetchDayAnaytics() {
-            //TODO fetch the days analytics
+            try {
+
+            } catch (error) {
+
+            }
         }
         fetchDayAnaytics()
     },[curDate]);
@@ -30,7 +34,7 @@ function Analytics() {
       };
 
     const formattedDate = new Intl.DateTimeFormat('en-US').format(curDate);
-    //TODO replace the datacards with a dynamic maping to display data
+    
     return (
         <div>
             <Logo/>
