@@ -7,9 +7,10 @@ This App generates a random prompt and users will have a day to create a playlis
 ## Features
 
 - **Create and Share Playlists**: Users can create and share playlists with others.
-- **Vote on Playlists**: Users can upvote or downvote playlists to influence their ranking.
+- **Vote on Playlists**: Users can vote between 2 playlists at a time by swiping which will increase that playlists ranking
 - **User Authentication**: Secure authentication to manage user accounts and interactions.
 - **Playlist Management**: Add, remove, and edit songs within playlists.
+- **Live Music**: hover over any song in a playlist and you can hear a short section of that song (some songs dont have previews because it is unavailable in the Spotify API)
 
 ## Tech Stack
 
